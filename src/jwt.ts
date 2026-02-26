@@ -27,7 +27,7 @@ export function mintEmbedJwt(client: string = "dnkn"): string {
     user_attributes: {
       client_id: clientIdWithQuotes,
     },
-    account_type: "Build",
+    account_type: "Embed - Build",
     teams: [teamName],
     iss: clientId,
   };

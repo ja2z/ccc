@@ -35,7 +35,7 @@ JWT claims:
   "user_attributes": {
     "client_id": "'dnkn'"
   },
-  "account_type": "Build",
+  "account_type": "Embed - Build",
   "teams": [
     "dnkn"
   ],
