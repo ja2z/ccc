@@ -11,10 +11,16 @@
   let hideTimeout;
   let selectedClient = "dnkn";
 
+  const allSubmenus = [analyzeSubmenu, adminSubmenu].filter(Boolean);
+
   function setupHoverSubmenu(triggerEl, submenuEl) {
     if (!triggerEl || !submenuEl) return;
     triggerEl.addEventListener("mouseenter", () => {
       clearTimeout(hideTimeout);
+      // Immediately hide all other submenus when opening a new one (fixes fast hover glitch)
+      allSubmenus.forEach((m) => {
+        if (m !== submenuEl) m.classList.add("hidden");
+      });
       submenuEl.classList.remove("hidden");
     });
     triggerEl.addEventListener("mouseleave", () => {
@@ -41,8 +47,16 @@
       selectedClient = opt.getAttribute("data-client") || "dnkn";
       adminOptions.forEach((o) => o.classList.remove("bg-sky-100", "font-medium"));
       opt.classList.add("bg-sky-100", "font-medium");
-      adminSubmenu?.classList.add("hidden");
       updatePageTitle(selectedClient);
+
+      // Brief blink for confirmation, then close menu
+      opt.classList.remove("admin-option-blink");
+      opt.offsetHeight; // force reflow so animation replays
+      opt.classList.add("admin-option-blink");
+      setTimeout(() => {
+        opt.classList.remove("admin-option-blink");
+        adminSubmenu?.classList.add("hidden");
+      }, 350);
     });
   });
 

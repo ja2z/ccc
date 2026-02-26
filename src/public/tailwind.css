@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes admin-option-blink {
+  0%, 100% {
+    background-color: rgb(224 242 254); /* sky-100 */
+  }
+  50% {
+    background-color: rgb(186 230 253); /* sky-200 */
+  }
+}
+
+.admin-option-blink {
+  animation: admin-option-blink 0.35s ease-out;
+}
