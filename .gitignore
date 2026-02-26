@@ -1,5 +1,6 @@
 node_modules/
 dist/
 .env
+apprunner-service-config.json
 *.log
 .DS_Store
