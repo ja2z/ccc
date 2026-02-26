@@ -46,5 +46,5 @@ export function mintEmbedJwt(client: string = "dnkn"): string {
 
 export function buildEmbedUrl(client: string = "dnkn"): string {
   const token = mintEmbedJwt(client);
-  return `${SIGMA_BASE_URL}?:jwt=${encodeURIComponent(token)}&:embed=false&:menu_position=none`;
+  return `${SIGMA_BASE_URL}?:jwt=${encodeURIComponent(token)}`;
 }
