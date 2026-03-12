@@ -12,23 +12,28 @@ export function mintEmbedJwt(client: string = "dnkn"): string {
   }
 
   const teamName = client.replace(/'/g, "");
-  const clientIdWithQuotes = `'${teamName}'`;
+  // dnkn-delete: identical to dnkn except email
+  const isDnknDelete = client === "dnkn-delete";
+  const team = isDnknDelete ? "dnkn" : teamName;
+  const sub = isDnknDelete
+    ? "jon+guest+dnkn+delete@sigmacomputing.com"
+    : `jon+guest+${teamName}@sigmacomputing.com`;
 
   const now = Math.floor(Date.now() / 1000);
   const exp = now + 3600; // 1 hour
 
   const payload = {
-    sub: `jon+guest+${teamName}@sigmacomputing.com`,
+    sub,
     aud: "sigmacomputing",
     ver: "1.1",
     jti: uuidv4(),
     iat: now,
     exp,
     user_attributes: {
-      client_id: clientIdWithQuotes,
+      client_id: `'${team}'`,
     },
     account_type: "Embed - Build",
-    teams: [teamName],
+    teams: [team],
     iss: clientId,
   };
 
