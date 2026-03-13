@@ -14,6 +14,15 @@
   const sigmaIframeContainer = document.getElementById("sigma-iframe-container");
   const sigmaEmbedIframe = document.getElementById("sigma-embed-iframe");
   const homeNav = document.getElementById("home-nav");
+  const sidebarToggle = document.getElementById("sidebar-toggle");
+  const bodyEl = document.body;
+
+  if (sidebarToggle && bodyEl) {
+    sidebarToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      bodyEl.classList.toggle("sidebar-collapsed");
+    });
+  }
 
   if (!analyzeNav || !analyzeSubmenu || !performanceLink) return;
 

@@ -14,3 +14,26 @@
 .admin-option-blink {
   animation: admin-option-blink 0.35s ease-out;
 }
+
+/* Sidebar collapse - more real estate for main content */
+body.sidebar-collapsed #sidebar {
+  width: 4rem;
+}
+
+body.sidebar-collapsed #main-content {
+  margin-left: 4rem;
+}
+
+body.sidebar-collapsed .sidebar-nav,
+body.sidebar-collapsed .sidebar-footer,
+body.sidebar-collapsed .sidebar-header-content {
+  display: none;
+}
+
+body.sidebar-collapsed .sidebar-header > div {
+  justify-content: center;
+}
+
+#main-content {
+  transition: margin-left 200ms ease-in-out;
+}
