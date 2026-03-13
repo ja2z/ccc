@@ -24,7 +24,7 @@
       <nav class="flex-1 py-4">
         <ul class="space-y-1">
           <li>
-            <a href="#" class="nav-item flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-300">
+            <a href="#" id="home-nav" class="nav-item flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-300">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
               Home
             </a>
@@ -75,15 +75,27 @@
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
             </a>
             <div id="admin-submenu" class="hidden absolute left-full top-0 ml-0 w-48 bg-white rounded-lg shadow-lg border border-slate-200 py-2 z-50">
-              <a href="#" class="admin-option submenu-item flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-100" data-client="dnkn">
-                dnkn
-              </a>
-              <a href="#" class="admin-option submenu-item flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-100" data-client="xom">
-                xom
-              </a>
-              <a href="#" class="admin-option submenu-item flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-100" data-client="dnkn-delete">
-                dnkn-delete
-              </a>
+              <div class="relative" id="admin-user-row">
+                <a href="#" class="admin-submenu-trigger submenu-item flex items-center justify-between gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-100">
+                  User
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                </a>
+                <div id="admin-user-submenu" class="hidden absolute left-full top-0 ml-0 w-40 bg-white rounded-lg shadow-lg border border-slate-200 py-2 z-50">
+                  <a href="#" class="admin-option submenu-item flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-100" data-client="dnkn">dnkn</a>
+                  <a href="#" class="admin-option submenu-item flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-100" data-client="xom">xom</a>
+                  <a href="#" class="admin-option submenu-item flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-100" data-client="dnkn-delete">dnkn-delete</a>
+                </div>
+              </div>
+              <div class="relative" id="admin-target-row">
+                <a href="#" class="admin-submenu-trigger submenu-item flex items-center justify-between gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-100">
+                  Target
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                </a>
+                <div id="admin-target-submenu" class="hidden absolute left-full top-0 ml-0 w-40 bg-white rounded-lg shadow-lg border border-slate-200 py-2 z-50">
+                  <a href="#" class="target-option submenu-item flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-100" data-target="newTab">New Tab</a>
+                  <a href="#" class="target-option submenu-item flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-100" data-target="iframe">iframe</a>
+                </div>
+              </div>
             </div>
           </li>
         </ul>
@@ -112,10 +124,11 @@
     </aside>
 
     <!-- Main content -->
-    <main class="flex-1 ml-60 p-6">
-      <h1 id="page-title" class="text-2xl font-semibold text-slate-800 mb-6">Commerce Control Center (dnkn)</h1>
+    <main class="flex-1 ml-60 flex flex-col min-h-0 p-6">
+      <div id="dashboard-container">
+        <h1 id="page-title" class="text-2xl font-semibold text-slate-800 mb-6">Commerce Control Center (dnkn)</h1>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Approval Rate -->
         <div class="bg-white rounded-lg shadow p-6 border border-slate-200">
           <h2 class="text-sm font-medium text-slate-600 mb-3">Approval Rate</h2>
@@ -201,6 +214,11 @@
             <p class="text-sm">You do not have any saved templates.</p>
           </div>
         </div>
+      </div>
+      </div>
+
+      <div id="sigma-iframe-container" class="hidden flex-1 min-h-0 flex flex-col">
+        <iframe id="sigma-embed-iframe" class="w-full flex-1 min-h-0 border-0" title="Sigma Performance Intelligence"></iframe>
       </div>
     </main>
 
