@@ -24,7 +24,7 @@
   const sidebarToggle = document.getElementById("sidebar-toggle");
   const bodyEl = document.body;
 
-  let openedTab = null;
+  let openedTabs = [];
 
   loginBtn?.addEventListener("click", () => {
     loginContainer?.classList.add("hidden");
@@ -32,10 +32,10 @@
   });
 
   logoutBtn?.addEventListener("click", () => {
-    if (openedTab && !openedTab.closed) {
-      openedTab.close();
-    }
-    openedTab = null;
+    openedTabs.forEach((tab) => {
+      if (!tab.closed) tab.close();
+    });
+    openedTabs = [];
 
     if (sigmaEmbedIframe) sigmaEmbedIframe.src = "";
     sigmaIframeContainer?.classList.add("hidden");
@@ -195,7 +195,8 @@
           sigmaIframeContainer?.classList.remove("hidden");
           if (sigmaEmbedIframe) sigmaEmbedIframe.src = data.url;
         } else {
-          openedTab = window.open(data.url, "_blank");
+          const tab = window.open(data.url, "_blank");
+          if (tab) openedTabs.push(tab);
         }
       })
       .catch((err) => {
