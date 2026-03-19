@@ -1,4 +1,11 @@
 (function () {
+  const loginContainer = document.getElementById("login-container");
+  const appContainer = document.getElementById("app-container");
+  const loginBtn = document.getElementById("login-btn");
+  const loginUsername = document.getElementById("login-username");
+  const loginPassword = document.getElementById("login-password");
+  const logoutBtn = document.getElementById("logout-btn");
+
   const analyzeNav = document.getElementById("analyze-nav");
   const analyzeSubmenu = document.getElementById("analyze-submenu");
   const performanceLink = document.getElementById("performance-intelligence");
@@ -16,6 +23,30 @@
   const homeNav = document.getElementById("home-nav");
   const sidebarToggle = document.getElementById("sidebar-toggle");
   const bodyEl = document.body;
+
+  let openedTab = null;
+
+  loginBtn?.addEventListener("click", () => {
+    loginContainer?.classList.add("hidden");
+    appContainer?.classList.remove("hidden");
+  });
+
+  logoutBtn?.addEventListener("click", () => {
+    if (openedTab && !openedTab.closed) {
+      openedTab.close();
+    }
+    openedTab = null;
+
+    if (sigmaEmbedIframe) sigmaEmbedIframe.src = "";
+    sigmaIframeContainer?.classList.add("hidden");
+    dashboardContainer?.classList.remove("hidden");
+
+    appContainer?.classList.add("hidden");
+    loginContainer?.classList.remove("hidden");
+
+    if (loginUsername) loginUsername.value = "";
+    if (loginPassword) loginPassword.value = "";
+  });
 
   if (sidebarToggle && bodyEl) {
     sidebarToggle.addEventListener("click", (e) => {
@@ -164,7 +195,7 @@
           sigmaIframeContainer?.classList.remove("hidden");
           if (sigmaEmbedIframe) sigmaEmbedIframe.src = data.url;
         } else {
-          window.open(data.url, "_blank");
+          openedTab = window.open(data.url, "_blank");
         }
       })
       .catch((err) => {
